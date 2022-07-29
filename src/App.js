@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { Box, CssBaseline } from '@mui/material'
+import { Navbar } from './components'
+import { About, Footer, Header, Skills, Testimonial, Work } from './container'
+import WebFont from 'webfontloader'
 
-function App() {
+const App = () => {
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['DM Sans','Macondo','Roboto']
+      }
+    })
+
+    window.scrollTo(0 ,0)
+  }, [])
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <CssBaseline/>
+    <Box backgroundColor='#edf2f8'>
+    <Navbar/>
+    <Header/>
+    <About/>
+    <Work/>
+    <Skills/>
+    <Testimonial/>
+    <Footer/>
+    </Box>
+
+     </>
+  )
 }
 
-export default App;
+export default App
