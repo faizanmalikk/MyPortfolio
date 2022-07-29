@@ -4,7 +4,6 @@ import Appwraper from '../../wrapper/Appwraper'
 import { ExperienceContainer, MyContainer, SkillsContainer } from './style'
 import { client, urlFor } from '../../client'
 import { motion } from 'framer-motion'
-import MotionWraper from '../../wrapper/MotionWraper'
 
 const Skills = () => {
 
@@ -106,6 +105,6 @@ const Skills = () => {
 }
 
 export default Appwraper(
-  MotionWraper(Skills), 
+Skills, 
   'Skills',
   )

@@ -1,10 +1,9 @@
-import { Box, Container, Typography } from '@mui/material'
+import { Box,  Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { AboutContainer, AboutDiv } from './style'
 import { motion } from 'framer-motion'
 import { client, urlFor } from '../../client'
 import Appwraper from '../../wrapper/Appwraper'
-import MotionWraper from '../../wrapper/MotionWraper'
 const About = () => {
 
   const [abouts, setabouts] = useState('')
@@ -50,6 +49,6 @@ const About = () => {
 
 
 export default Appwraper(
-  MotionWraper(About), 
+ About, 
   'About',
   )

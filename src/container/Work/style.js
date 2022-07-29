@@ -59,8 +59,8 @@ const StyledCard = styled(Box)(({ theme }) => ({
 
 },
     '.card':{
-        width : '11em',
-        height:'16.5em',
+        width : '11rem',
+        minHeight:'16.5rem',
         backgroundColor:'white',
         padding:'15px',
         borderRadius:'10px',
@@ -68,6 +68,11 @@ const StyledCard = styled(Box)(({ theme }) => ({
         transition : 'all 0.3s ease-in-out',
         '&:hover':{
             boxShadow : '0 0 25px rgba(0,0,0,0.2)'
+        },
+        [theme.breakpoints.down('sm')]:{
+            width : '85%',
+            paddingBottom : '0',
+            minHeight : '15.5rem'
         }
         
     },
@@ -115,7 +120,8 @@ const StyledCard = styled(Box)(({ theme }) => ({
     textAlign : 'center',
     fontSize : '18px',
     paddingTop : '7px',
-    color : theme.palette.grey[600]
+    color : theme.palette.grey[600],
+    
     },
     '.card-tag':{
         position : 'absolute',

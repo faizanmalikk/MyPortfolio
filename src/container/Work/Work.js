@@ -5,7 +5,6 @@ import Appwraper from '../../wrapper/Appwraper'
 import { client, urlFor } from '../../client'
 import { motion } from 'framer-motion'
 import { GitHub, Visibility } from '@mui/icons-material'
-import MotionWraper from '../../wrapper/MotionWraper'
 
 
 const Work = () => {
@@ -133,7 +132,7 @@ const Work = () => {
 }
 
 export default Appwraper(
-  MotionWraper(Work), 
+Work, 
   'Work',
   'white-bg'
   )

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import Appwraper from '../../wrapper/Appwraper'
-import MotionWraper from '../../wrapper/MotionWraper'
 import { ContactForm, FooterContainer } from './style'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import { Images } from '../../constants'
@@ -94,6 +93,6 @@ const Footer = () => {
 
 
 export default Appwraper(
-  MotionWraper(Footer),
+  Footer,
   'Contact',
 )

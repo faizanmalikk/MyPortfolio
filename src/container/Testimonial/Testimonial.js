@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Appwraper from '../../wrapper/Appwraper'
-import MotionWraper from '../../wrapper/MotionWraper'
 import { client, urlFor } from '../../client'
 import { motion } from 'framer-motion'
 import { TestimonialContainer } from './style'
@@ -86,6 +85,6 @@ const Testimonial = () => {
 }
 
 export default Appwraper(
-  MotionWraper(Testimonial),
+Testimonial,
   'Testimonial',
 )
