@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Backdrop, Box, Typography } from '@mui/material'
 import { StyledCard, StyledWork, WorkContainer } from './style'
 import Appwraper from '../../wrapper/Appwraper'
 import { client, urlFor } from '../../client'
@@ -13,6 +13,8 @@ const Work = () => {
   const [works, setworks] = useState([])
   const [filterWork, setfilterWork] = useState([])
   const [animateCard, setanimateCard] = useState({ y: 0, opacity: 1 })
+  const [card, setcard] = useState(false)
+  const [activeCard, setactiveCard] = useState('')
 
   useEffect(() => {
 
@@ -40,9 +42,32 @@ const Work = () => {
       } else {
         setfilterWork(works.filter((work) => work.tags.includes(item)))
       }
-      
+
     }, 500);
 
+
+
+  }
+
+  const handleCardChange = (index) => {
+
+    setactiveCard(index)
+
+  }
+
+  const toggleActiveCard = (index) => {
+
+
+
+
+
+    if (activeCard === index) {
+
+      return 'active'
+    } else {
+
+      return 'unactive'
+    }
 
 
   }
@@ -50,8 +75,8 @@ const Work = () => {
 
   return (
     <WorkContainer >
-
-      <Box>
+<Backdrop open='true' color='transparent' sx={{backgroundColor:'transparent'}} onClick={()=>setactiveCard('')}/>
+      <Box >
         <Typography fontSize={{ xs: '30px', sm: '43px' }} fontWeight='bold' textAlign={'center'}>My Creative <Typography component={'span'} fontSize={{ xs: '30px', sm: '43px' }} color='#1976d2' fontWeight={'bold'}>Portfolio</Typography></Typography>
       </Box>
 
@@ -71,22 +96,25 @@ const Work = () => {
 
       </Box>
 
-      <StyledCard>
+      <StyledCard >
         <motion.div
           animate={animateCard}
           transition={{ duration: 0.5, delayChildren: 0.5 }}
           className='card-container'
+
         >
 
           {filterWork.slice().reverse().map((item, index) => (
-            <Box key={index} className='card'>
-              <Box sx={{position: 'relative'}}>
-                <Box component={'img'} width='100%' height={'220px'} sx={{ borderRadius: '10px'  }} src={urlFor(item.imgUrl)} alt={item.name}></Box>
+            <Box key={index} className='card' onClick={() => handleCardChange(index)} >
+              <Box sx={{ position: 'relative' }} >
+                <Box component={'img'} width='100%' height={'220px'} sx={{ borderRadius: '10px' }} src={urlFor(item.imgUrl)} alt={item.name}></Box>
 
                 <motion.div
-                  whileHover={{ opacity: [0, 1] }}
+
+                  whileInView={{ opacity: [0,1] }}
                   transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
-                  className='work-img-container'
+                  className={`work-img-container ${toggleActiveCard(index)}`}
+
                 >
                   <Typography component={'a'} href={item.projectLink} target='_blank' rel='noreferrer'>
                     <motion.div
@@ -95,7 +123,7 @@ const Work = () => {
                       transition={{ duration: 0.25 }}
                       className='hover-container'
                     >
-                      <Visibility sx={{width:'60%',height:'60%'}}/>
+                      <Visibility sx={{ width: '60%', height: '60%' }} />
                     </motion.div>
                   </Typography>
                   <Typography component={'a'} href={item.codeLink} target='_blank' rel='noreferrer'>
@@ -105,18 +133,18 @@ const Work = () => {
                       transition={{ duration: 0.25 }}
                       className='hover-container'
                     >
-                      <GitHub sx={{width:'60%',height:'60%'}}/>
+                      <GitHub sx={{ width: '60%', height: '60%' }} />
                     </motion.div>
                   </Typography>
                 </motion.div>
               </Box>
-              <Box sx={{position:'relative'}}>
+              <Box sx={{ position: 'relative' }}>
                 <Typography className='card-title'>{item.title}</Typography>
-                <Typography className='card-description' >{item.description.length > 70 ? `${item.description.substring(0 , 70)}...`: item.description }</Typography>
+                <Typography className='card-description' >{item.description.length > 70 ? `${item.description.substring(0, 70)}...` : item.description}</Typography>
                 <Box className='card-tag'>
-            
-                    <Typography>{item.tags[0]}</Typography>
-                
+
+                  <Typography>{item.tags[0]}</Typography>
+
                 </Box>
               </Box>
 
@@ -132,7 +160,7 @@ const Work = () => {
 }
 
 export default Appwraper(
-Work, 
+  Work,
   'Work',
   'white-bg'
-  )
+)
