@@ -28,7 +28,7 @@ const AboutDiv = styled(Box)(({ theme }) => ({
   backgroundColor : 'white',
   width:'100%',
   margin:'0 auto',
-  padding : '2rem 0',
+  padding : '4rem 0',
 
 '.white-bg' : {
   backgroundColor : 'white'

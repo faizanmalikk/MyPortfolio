@@ -9,9 +9,9 @@ const WorkContainer = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     minHeight: '100vh',
     width: '99vw',
-    padding: '2rem 5em',
+    padding: '4rem 5em',
     [theme.breakpoints.down('md')]: {
-        padding: '2rem 0.5em',
+        padding: '4rem 0.5em',
     },
   
 
@@ -73,7 +73,7 @@ const StyledCard = styled(Box)(({ theme }) => ({
         [theme.breakpoints.down('sm')]: {
             width: '85%',
             paddingBottom: '0',
-            minHeight: '15.5rem'
+       
         }
 
     },

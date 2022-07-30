@@ -11,7 +11,7 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
   gap: '20px',
   minHeight: '100vh',
   maxHeight: 'auto',
-  padding: '2rem 1em',
+  padding: '4rem 1em',
 
   alignItems: 'center',
  

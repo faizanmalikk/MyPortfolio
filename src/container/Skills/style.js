@@ -8,10 +8,10 @@ const MyContainer = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     minHeight: '100vh',
     width: '99vw',
-    padding: '2rem 5em',
+    padding: '4rem 5em',
     backgroundColor : 'white',
     [theme.breakpoints.down('md')]: {
-        padding: '2rem 0',
+        padding: '4rem 0',
     },
     '.myContainer': {
 
@@ -63,7 +63,7 @@ const ExperienceContainer = styled(Box)(({ theme }) => ({
 
     flex: '1',
     [theme.breakpoints.down('md')]: {
-        marginTop: '2em'
+        paddingTop: '3rem'
     },
     '.experience-container': {
         display: 'flex',
@@ -71,6 +71,7 @@ const ExperienceContainer = styled(Box)(({ theme }) => ({
         marginLeft: '20%',
         [theme.breakpoints.down('md')]: {
             marginLeft: '0',
+           
 
         }
 

@@ -9,7 +9,7 @@ const FooterContainer = styled(Box)(({ theme }) => ({
     minHeight: '100vh',
     minWidth: '99vw',
     backgroundColor: 'white',
-    padding :' 2rem 10px',
+    padding :' 4rem 10px',
 
     '.poster': {
         display: 'flex',

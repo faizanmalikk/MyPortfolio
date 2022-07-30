@@ -8,7 +8,7 @@ const TestimonialContainer = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     minHeight: '100vh',
     minWidth: '99vw',
-    padding  :'2rem 0',
+    padding  :'4rem 0',
    
 
 

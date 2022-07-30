@@ -105,7 +105,7 @@ const Work = () => {
         >
 
           {filterWork.slice().reverse().map((item, index) => (
-            <Box key={index} className='card' onClick={() => handleCardChange(index)} >
+            <Box key={index} className='card' onClick={() => handleCardChange(index)} onMouseOver={() => handleCardChange(index)} onMouseOut={() => handleCardChange(index)}>
               <Box sx={{ position: 'relative' }} >
                 <Box component={'img'} width='100%' height={'220px'} sx={{ borderRadius: '10px' }} src={urlFor(item.imgUrl)} alt={item.name}></Box>
 
@@ -116,7 +116,7 @@ const Work = () => {
                   className={`work-img-container ${toggleActiveCard(index)}`}
 
                 >
-                  <Typography component={'a'} href={item.projectLink} target='_blank' rel='noreferrer'>
+                  <Typography component={'a'} href={item.projectLink} target='_blank' rel='noreferrer' >
                     <motion.div
                       whileInView={{ scale: [0, 1] }}
                       whileHover={{ scale: [0, 0.90] }}
