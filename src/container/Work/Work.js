@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Backdrop, Box, Typography } from '@mui/material'
+import {  Box, Typography } from '@mui/material'
 import { StyledCard, StyledWork, WorkContainer } from './style'
 import Appwraper from '../../wrapper/Appwraper'
 import { client, urlFor } from '../../client'
@@ -13,7 +13,6 @@ const Work = () => {
   const [works, setworks] = useState([])
   const [filterWork, setfilterWork] = useState([])
   const [animateCard, setanimateCard] = useState({ y: 0, opacity: 1 })
-  const [card, setcard] = useState(false)
   const [activeCard, setactiveCard] = useState('')
 
   useEffect(() => {
@@ -75,7 +74,6 @@ const Work = () => {
 
   return (
     <WorkContainer >
-<Backdrop open='true' color='transparent' sx={{backgroundColor:'transparent'}} onClick={()=>setactiveCard('')}/>
       <Box >
         <Typography fontSize={{ xs: '30px', sm: '43px' }} fontWeight='bold' textAlign={'center'}>My Creative <Typography component={'span'} fontSize={{ xs: '30px', sm: '43px' }} color='#1976d2' fontWeight={'bold'}>Portfolio</Typography></Typography>
       </Box>
@@ -105,7 +103,7 @@ const Work = () => {
         >
 
           {filterWork.slice().reverse().map((item, index) => (
-            <Box key={index} className='card' onClick={() => handleCardChange(index)} onMouseOver={() => handleCardChange(index)} onMouseOut={() => handleCardChange(index)}>
+            <Box key={index} className='card' onClick={() => handleCardChange(index)} onMouseOver={() => handleCardChange(index)} onMouseOut={()=>setactiveCard('')}>
               <Box sx={{ position: 'relative' }} >
                 <Box component={'img'} width='100%' height={'220px'} sx={{ borderRadius: '10px' }} src={urlFor(item.imgUrl)} alt={item.name}></Box>
 

@@ -73,7 +73,7 @@ const StyledCard = styled(Box)(({ theme }) => ({
         [theme.breakpoints.down('sm')]: {
             width: '85%',
             paddingBottom: '0',
-            minHeight: '18rem',
+            minHeight: '17rem',
         }
 
     },
