@@ -71,6 +71,7 @@ const FooterContainer = styled(Box)(({ theme }) => ({
         padding: '1rem 2rem',
         borderRadius: '10px',
         backgroundColor: ' #f2f7fb',
+        
         [theme.breakpoints.down('sm')]: {
             width: '95%',
             gap: '0.4em',

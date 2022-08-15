@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import {  Box, Typography } from '@mui/material'
-import { StyledCard, StyledWork, WorkContainer } from './style'
+import { Box, Button, Typography } from '@mui/material'
+import { StyledCard, StyledPagination, StyledWork, WorkContainer } from './style'
 import Appwraper from '../../wrapper/Appwraper'
 import { client, urlFor } from '../../client'
 import { motion } from 'framer-motion'
-import { GitHub, Visibility } from '@mui/icons-material'
+import { Block, GitHub, Visibility } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 
 const Work = () => {
@@ -14,6 +15,10 @@ const Work = () => {
   const [filterWork, setfilterWork] = useState([])
   const [animateCard, setanimateCard] = useState({ y: 0, opacity: 1 })
   const [activeCard, setactiveCard] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postPerPage, setPostPerPage] = useState(5)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -27,6 +32,7 @@ const Work = () => {
 
   }, [])
 
+
   const handleWorkFilter = (item) => {
 
     setactivefilter(item)
@@ -38,7 +44,10 @@ const Work = () => {
 
       if (item === 'All') {
         setfilterWork(works)
+        setCurrentPage(1)
       } else {
+
+        setCurrentPage(1)
         setfilterWork(works.filter((work) => work.tags.includes(item)))
       }
 
@@ -56,10 +65,6 @@ const Work = () => {
 
   const toggleActiveCard = (index) => {
 
-
-
-
-
     if (activeCard === index) {
 
       return 'active'
@@ -68,6 +73,26 @@ const Work = () => {
       return 'unactive'
     }
 
+
+  }
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = filterWork.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePageCount = (event, value) => {
+
+    setanimateCard({ y: 100, opacity: 0 })
+    const id = document.getElementById('Work')
+    id.scrollIntoView()
+
+    setTimeout(() => {
+
+      setanimateCard({ y: 0, opacity: 1 })
+      setCurrentPage(value)
+
+    }, 500);
 
   }
 
@@ -102,14 +127,14 @@ const Work = () => {
 
         >
 
-          {filterWork.slice().reverse().map((item, index) => (
-            <Box key={index} className='card' onClick={() => handleCardChange(index)} onMouseOver={() => handleCardChange(index)} onMouseOut={()=>setactiveCard('')}>
+          {currentPosts.map((item, index) => (
+            <Box key={index} className='card' onClick={() => handleCardChange(index)} onMouseOver={() => handleCardChange(index)} onMouseOut={() => setactiveCard('')}>
               <Box sx={{ position: 'relative' }} >
                 <Box component={'img'} width='100%' height={'220px'} sx={{ borderRadius: '10px' }} src={urlFor(item.imgUrl)} alt={item.name}></Box>
 
                 <motion.div
 
-                  whileInView={{ opacity: [0,1] }}
+                  whileInView={{ opacity: [0, 1] }}
                   transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                   className={`work-img-container ${toggleActiveCard(index)}`}
 
@@ -124,16 +149,20 @@ const Work = () => {
                       <Visibility sx={{ width: '60%', height: '60%' }} />
                     </motion.div>
                   </Typography>
-                  <Typography component={'a'} href={item.codeLink} target='_blank' rel='noreferrer'>
+                  <Button component={'a'} disabled={!item.codeLink && true} href={item.codeLink} target='_blank' rel='noreferrer'>
                     <motion.div
                       whileInView={{ scale: [0, 1] }}
                       whileHover={{ scale: [0, 0.90] }}
                       transition={{ duration: 0.25 }}
                       className='hover-container'
                     >
-                      <GitHub sx={{ width: '60%', height: '60%' }} />
+                      {item.codeLink ? (
+                        <GitHub sx={{ width: '60%', height: '60%' }} />
+                      ) : (
+                        <Block sx={{ width: '60%', height: '60%' }} />
+                      )}
                     </motion.div>
-                  </Typography>
+                  </Button>
                 </motion.div>
               </Box>
               <Box sx={{ position: 'relative' }}>
@@ -150,6 +179,17 @@ const Work = () => {
           ))}
 
         </motion.div>
+        {postPerPage < filterWork.length && (
+
+          <StyledPagination color='primary' size='large'
+            count={Math.ceil(filterWork.length / postPerPage)}
+            page={currentPage}
+            shape='rounded'
+            onChange={(event, value) => handlePageCount(event, value)}
+            showLastButton showFirstButton hideNextButton hidePrevButton
+
+          />
+        )}
       </StyledCard>
 
 

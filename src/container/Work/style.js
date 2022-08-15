@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Pagination, styled } from "@mui/material";
 
 
 const WorkContainer = styled(Box)(({ theme }) => ({
@@ -73,7 +73,7 @@ const StyledCard = styled(Box)(({ theme }) => ({
         [theme.breakpoints.down('sm')]: {
             width: '85%',
             paddingBottom: '0',
-            minHeight: '17rem',
+            minHeight: '392px',
         }
 
     },
@@ -164,11 +164,17 @@ const StyledCard = styled(Box)(({ theme }) => ({
 
 }))
 
-
+const StyledPagination = styled(Pagination)({
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '2.5em',
+    marginBottom:'3em'
+  })
 
 export {
     WorkContainer,
     StyledWork,
-    StyledCard
+    StyledCard,
+    StyledPagination
 
 }
