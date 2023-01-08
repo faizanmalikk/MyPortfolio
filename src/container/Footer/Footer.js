@@ -10,8 +10,6 @@ const Footer = () => {
   const [isSubmitted, setisSubmitted] = useState(false)
   const form = useRef();
 
-
-
   const sendEmail = (e) => {
     e.preventDefault();
     setisSubmitted(true)

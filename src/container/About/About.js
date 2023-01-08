@@ -34,7 +34,7 @@ const About = () => {
           key={index}
          className='about-cards'
           >
-            <Box width={{xs:'90%',sm:'13em'}} margin='0 auto'>
+            <Box width={{xs:'90%',sm:'276px'}} margin='0 auto'>
             <Box component={'img'} src={urlFor(value.imgUrl)} sx={{width:'100%',objectFit:'cover',borderRadius:'15px',height:'200px'}}></Box>
             <Typography fontWeight={'bold'}marginTop='10px' fontSize='23px'>{value.title}</Typography>
             <Typography color='#9e9e9e' fontSize='19px' textAlign={'justify'}>{value.description}</Typography>

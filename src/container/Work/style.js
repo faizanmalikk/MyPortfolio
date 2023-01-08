@@ -60,8 +60,8 @@ const StyledCard = styled(Box)(({ theme }) => ({
 
     },
     '.card': {
-        width: '11rem',
-        minHeight: '16.5rem',
+        width: '276px',
+        minHeight: '392px',
         backgroundColor: 'white',
         padding: '15px',
         borderRadius: '10px',
